@@ -5,9 +5,11 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
+import ru.yandex.praktikum.stellar_burgers.api.UserAPI;
 import ru.yandex.praktikum.stellar_burgers.model.TestUser;
 import ru.yandex.praktikum.stellar_burgers.pages.*;
 import ru.yandex.praktikum.stellar_burgers.util.UserGenerator;
+
 import static org.junit.Assert.assertTrue;
 
 @DisplayName("Тесты авторизации")
@@ -16,24 +18,39 @@ public class LoginTest {
     @Rule
     public TestBase rule = new TestBase();
 
+    private UserAPI userAPI = new UserAPI();
     private TestUser testUser;
+    private String accessToken;
 
-    // Этот метод будет выполняться перед каждым тестом
+    // Создаем пользователя через API перед каждым тестом
     private void createTestUserForLogin() {
-        // Используем конкретные данные, которые ты создал вручную
-        testUser = UserGenerator.generateSpecificUser(
-                "Test_primer@yandex.ru",  // Твой email
-                "123456"                   // Твой пароль
-        );
+        // Генерируем случайного пользователя
+        testUser = UserGenerator.generateRandomUser();
 
-        System.out.println("Используем пользователя для входа: " + testUser.getEmail());
+        System.out.println("Создаем пользователя через API для теста входа: " + testUser.getEmail());
+
+        // Создаем пользователя через API
+        userAPI.createUser(testUser)
+                .statusCode(200);
+
+        // Получаем токен для последующего удаления
+        var loginResponse = userAPI.loginUser(testUser);
+        accessToken = userAPI.extractAccessToken(loginResponse);
+
+        System.out.println("Пользователь создан и готов для входа через UI");
     }
 
     @After
     public void cleanup() {
-        // Здесь можно добавить очистку, если будешь создавать пользователей через API
-        System.out.println("Тест завершен. Пользователь: " +
-                (testUser != null ? testUser.getEmail() : "не создан"));
+        // Удаляем пользователя через API после теста
+        if (accessToken != null) {
+            try {
+                userAPI.deleteUser(accessToken);
+                System.out.println("Пользователь удален через API: " + testUser.getEmail());
+            } catch (Exception e) {
+                System.out.println("Не удалось удалить пользователя: " + e.getMessage());
+            }
+        }
     }
 
     @Test
@@ -51,7 +68,7 @@ public class LoginTest {
         assertTrue("После входа должна отображаться кнопка 'Оформить заказ'",
                 mainPage.isOrderButtonVisible());
 
-        System.out.println("Успешный вход пользователя: " + testUser.getEmail());
+        System.out.println("Успешный вход пользователя через UI: " + testUser.getEmail());
     }
 
     @Test

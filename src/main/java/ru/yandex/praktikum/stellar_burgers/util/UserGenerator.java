@@ -16,15 +16,10 @@ public class UserGenerator {
         return new TestUser(name, email, password);
     }
 
-    public static TestUser generateSpecificUser(String email, String password) {
-        String name = "TestUser";
-        return new TestUser(name, email, password);
-    }
-
-    public static TestUser generateInvalidPasswordUser() {
+    public static TestUser generateUserWithShortPassword() {
         String name = faker.name().firstName();
-        String email = "test_invalid_" + System.currentTimeMillis() + "@yandex.ru";
-        String password = faker.internet().password(1, 5); // Менее 6 символов
+        String email = "test_short_" + System.currentTimeMillis() + "@yandex.ru";
+        String password = RandomStringUtils.randomNumeric(5); // 5 символов - меньше минимального
 
         return new TestUser(name, email, password);
     }
