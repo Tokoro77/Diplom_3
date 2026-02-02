@@ -1,39 +1,38 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
+# игнорировать всё по умолчанию
+*
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
+# разрешить определённые папки и файлы
+!src/
+!src/main/
+!src/main/java/
+!src/main/java/ru/
+!src/main/java/ru/yandex/
+!src/main/java/ru/yandex/praktikum/
+!src/main/java/ru/yandex/praktikum/stellar_burgers/
+!src/main/java/ru/yandex/praktikum/stellar_burgers/**/*
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+!src/test/
+!src/test/java/
+!src/test/java/ru/
+!src/test/java/ru/yandex/
+!src/test/java/ru/yandex/praktikum/
+!src/test/java/ru/yandex/praktikum/stellar_burgers/
+!src/test/java/ru/yandex/praktikum/stellar_burgers/tests/
+!src/test/java/ru/yandex/praktikum/stellar_burgers/tests/**/*
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+!target/
+!target/allure-results/
+!target/allure-results/**/*
 
-### VS Code ###
-.vscode/
+# разрешить основные файлы проекта
+!pom.xml
+!README.md
+!.gitignore
+!*.PNG
+!3\ npoekt.PNG
 
-### Mac OS ###
-.DS_Store
+# игнорировать .idea и другие служебные папки
+.idea/
+.mvn/
+allure-report/
+.gitignore
