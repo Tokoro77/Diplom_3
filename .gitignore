@@ -1,28 +1,38 @@
-# Игнорировать всё по умолчанию
+# игнорировать всё по умолчанию
 *
 
-# Но разрешить определённые папки и файлы
+# разрешить определённые папки и файлы
+!src/
+!src/main/
+!src/main/java/
+!src/main/java/ru/
+!src/main/java/ru/yandex/
+!src/main/java/ru/yandex/praktikum/
 !src/main/java/ru/yandex/praktikum/stellar_burgers/
-!src/test/java/ru/yandex/praktikum/stellar_burgers/tests/
-!target/allure-results/
-
-# Исключить пустые папки (необязательно, но полезно)
-!*/**
-
-# Разрешить файлы внутри этих папок
 !src/main/java/ru/yandex/praktikum/stellar_burgers/**/*
+
+!src/test/
+!src/test/java/
+!src/test/java/ru/
+!src/test/java/ru/yandex/
+!src/test/java/ru/yandex/praktikum/
+!src/test/java/ru/yandex/praktikum/stellar_burgers/
+!src/test/java/ru/yandex/praktikum/stellar_burgers/tests/
 !src/test/java/ru/yandex/praktikum/stellar_burgers/tests/**/*
+
+!target/
+!target/allure-results/
 !target/allure-results/**/*
 
-# Также нужно разрешить основные файлы проекта
+# разрешить основные файлы проекта
 !pom.xml
 !README.md
 !.gitignore
 !*.PNG
+!3\ npoekt.PNG
 
-# Разрешить папку allure-report (если нужно)
-!target/allure-results
-
-# Исключить всё остальное в target, кроме разрешенного
-target/*
-!target/allure-report
+# игнорировать .idea и другие служебные папки
+.idea/
+.mvn/
+allure-report/
+.gitignore
