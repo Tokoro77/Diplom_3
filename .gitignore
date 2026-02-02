@@ -1,39 +1,28 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-.kotlin
+# Игнорировать всё по умолчанию
+*
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
+# Но разрешить определённые папки и файлы
+!src/main/java/ru/yandex/praktikum/stellar_burgers/
+!src/test/java/ru/yandex/praktikum/stellar_burgers/tests/
+!target/allure-results/
 
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Исключить пустые папки (необязательно, но полезно)
+!*/**
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# Разрешить файлы внутри этих папок
+!src/main/java/ru/yandex/praktikum/stellar_burgers/**/*
+!src/test/java/ru/yandex/praktikum/stellar_burgers/tests/**/*
+!target/allure-results/**/*
 
-### VS Code ###
-.vscode/
+# Также нужно разрешить основные файлы проекта
+!pom.xml
+!README.md
+!.gitignore
+!*.PNG
 
-### Mac OS ###
-.DS_Store
+# Разрешить папку allure-report (если нужно)
+!target/allure-results
+
+# Исключить всё остальное в target, кроме разрешенного
+target/*
+!target/allure-report
